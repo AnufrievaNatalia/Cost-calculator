@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+ <head>
+  <meta charset="utf-8">
+  <title>Стили</title>
+  <link rel="stylesheet" href="calc.css">
+ </head>
+ <body>
+
+
+<h3>Расчет стоимости</h3>
+<form">
+    <div>
+    <div class="margin">
+        <select id="material" onchange="raschitat()">
+            <option selected disabled>Выберите материал</option>
+            <option selected value="Материал 1">Материал 1 1000 руб./м² </option>
+            <option value="Материал 2">Материал 2 2000 руб./м² </option>
+            <option value="Материал 3">Материал 3 3000 руб./м² </option>
+            <option value="Материал 4">Материал 4 4000 руб./м² </option>
+            <option value="Материал 5">Материал 1 5000 руб./м²  </option>
+            <option value="Материал 6">Материал 6 6000 руб./м²  </option>
+        </select>
+    </div>
+<div class="margin"><input type="text" id="shirina" value="" name="shirina" placeholder="Укажите ширину/см" required onchange="raschitat()">
+</div>
+<div class="margin"><input type="text" id="dlina" value="" name="dlina" placeholder="Укажите высоту/см" required onchange="raschitat()">
+</div>
+
+<div>
+    <h5 class="margin" id="ploschad">Площадь:</h5>
+    <h5 class="margin" id="stoimost">Стоимость:</h5>
+</div>
+    
+</div>
+</form>
+
+<script>
+function raschitat() {
+material  = document.getElementById('material').value;
+switch (material) {
+   case "Материал 1":
+      cena = 1000;
+      break;
+   case "Материал 2":
+      cena = 2000;
+      break;  
+    case "Материал 3":
+      cena = 3000;
+      break; 
+    case "Материал 4":
+      cena = 4000;
+      break;
+    case "Материал 5":
+      cena = 5000;
+      break;
+    case "Материал 6":
+      cena = 6000;
+      break;
+}   
+shirina  = document.getElementById('shirina').value;
+dlina  = document.getElementById('dlina').value;
+if(shirina == ""){
+    document.getElementById('ploschad').innerHTML.hidden = true;
+} else if(dlina == ""){
+    document.getElementById('ploschad').innerHTML.hidden = true;
+} else {
+ploschad = parseFloat (shirina)* parseFloat (dlina)*0.0001;
+document.getElementById('ploschad').innerHTML = "Площадь: "+ ( Math.floor(ploschad * 100) / 100 ) +" кв. м.";
+stoimost = ploschad*cena;
+document.getElementById('stoimost').innerHTML = "Стоимость: "+ ( Math.floor(stoimost * 100) / 100 ) +" р.";
+};
+};
+</script>
